@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>LolacStorage and event delegation</title>
+
+    <link rel="stylesheet" href="./src/css/style.css">
+    <link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/512/1046/1046747.png" type="image/x-icon">
+
+    <script src="./src/js/App.js" defer type="module"></script>
+</head>
+<body>
+    <div class="container">
+        <img src="./src/assets/food.png" alt="Food icon" class="container__img">
+
+        <div class="formContainer">
+            <ul class="itemsList" id="itemsList">
+                <li class="item">
+                    <!-- <input type="checkbox" class="item__checkbox" data-index="1" id="item1">
+    
+                    <label for="item1" class="item__label">Fish</label> -->
+                    <p>
+                        Loading food...
+                    </p>
+                </li>
+            </ul>
+    
+            <form action="" class="form">
+                <input type="text" class="form__input" placeholder="Enter item's name">
+                    
+                <div class="additionCheckingAndDelete">
+                    <input type="submit" class="additionCheckingAndDelete__input" value="Submit">
+
+                    <input type="submit" value="Delete all" class="additionCheckingAndDelete__input" id="delteteAll"> 
+
+                    <input type="submit" value="Check all" class="additionCheckingAndDelete__input" id="checkAll">
+                    
+                    <input type="submit" value="Uncheck all" class="additionCheckingAndDelete__input" id="uncheckAll">
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

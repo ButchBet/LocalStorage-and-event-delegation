@@ -1,0 +1,120 @@
+:root {
+    --main-background: #F0DB4F;
+    --secondary-background: white;
+    --main-color-text: #323330;
+    --main-color-border: #cfd6bf;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-size: 62.5%; /* 1rem = 10px */
+    color: var(--main-color-text);
+    height: 100vh;
+    background: var(--main-background);
+    user-select: none;
+}
+
+body,
+.container,
+.container__img,
+.formContainer,
+.form,
+.additionCheckingAndDelete {
+    display: flex;
+}
+
+body {
+    justify-content: center;
+}
+
+body,
+.container {
+    align-items: center;
+}
+
+.additionCheckingAndDelete {
+    justify-content: space-between;
+}
+
+.container,
+.formContainer,
+.form {
+    flex-flow: column;
+}
+
+.additionCheckingAndDelete {
+    flex-flow: row wrap;
+}
+
+.container {
+    min-width: 200px;
+    max-width: 600px;
+    background: url("../assets/restaurant.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 0;
+    padding: 10px;
+    gap: 20px;
+}
+
+.container__img {
+    width: 80px;
+}
+
+.formContainer {
+    gap: 10px;
+    border-radius: 4px;
+    padding: 5px;
+    background-color: var(--secondary-background);
+}
+
+.itemsList {
+    font-size: .8rem;
+}
+
+.item__checkbox  + label:before {
+    content: "⬜️";
+    margin-right: 10px;
+}
+
+.item__checkbox:checked  + label:before {
+    content: "🌮";
+}
+
+.item__checkbox {
+    display: none;
+}
+
+.form,
+.additionCheckingAndDelete {
+    gap: 5px;
+}
+
+body,
+input {
+    font-family: monospace;
+}
+
+.form__input:focus {
+    outline: none;
+}
+
+.additionCheckingAndDelete__input {
+    background: var(--main-background);
+    border-radius: 4px;
+    border: 1px solid var(--main-color-border);
+    padding: 5px;
+}
+
+.additionCheckingAndDelete__input:hover {
+    opacity: .9;
+}
+
+.additionCheckingAndDelete__input:active {
+    transform: scale(.9);
+}
