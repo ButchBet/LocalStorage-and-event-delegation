@@ -12,7 +12,7 @@
 
 ## Links
 - Solution URL: [GitHub](https://github.com/ButchBet/LocalStorage-and-event-delegation)
-- Live Site URL: [LocalStorage and event delegation](https://main--peppy-mousse-2ff35b.netlify.app/)
+- Live Site URL: [LocalStorage and event delegation](https://localstorageanddelegationbutchbet.netlify.app/)
 
 ### Built with
 - Semantic HTML5 markup
