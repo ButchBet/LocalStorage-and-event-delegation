@@ -1,5 +1,6 @@
 const itemsList = document.getElementById("itemsList");
-const items = JSON.parse(localStorage.getItem("items")) || [{name: "Fish", done: false}, {name: "Bread", done: false}, {name: "Cucumber", done: false}, {name: "Cucumber", done: false}];
+const items = JSON.parse(localStorage.getItem("items")) || 
+[/* {name: "Fish", done: false}, {name: "Bread", done: false}, {name: "Cucumber", done: false}, {name: "Cucumber", done: false} */];
 const from = document.getElementById("form");
 const addButton = document.getElementById("add");
 const deleteAllButton = document.getElementById("deleteAll");
@@ -28,7 +29,20 @@ uncheckAllButton.addEventListener("click", (e) => {
 })
 
 function addItem(place, items) {
-    console.log("Adding item...");
+    let name = (form.querySelector("[name=inputText]")).value;
+
+    const item = {
+        name,
+        done: false
+    }
+    
+    items.push(item);
+    
+    localStorage.setItem("items", JSON.stringify(items));
+
+    setItems(place, items);
+
+    form.reset();
 }
 
 function removeAllItems(place, items) {
@@ -55,4 +69,3 @@ function setItems(place, items) {
     }).join("");
 }
 
-setItems(itemsList, items)
