@@ -1,5 +1,5 @@
 const itemsList = document.getElementById("itemsList");
-const items = JSON.parse(localStorage.getItem("items")) || [];
+const items = JSON.parse(localStorage.getItem("items")) || [{name: "Fish", done: false}, {name: "Bread", done: false}, {name: "Cucumber", done: false}, {name: "Cucumber", done: false}];
 const from = document.getElementById("form");
 const addButton = document.getElementById("add");
 const deleteAllButton = document.getElementById("deleteAll");
@@ -44,5 +44,15 @@ function uncheckAllItems(place, items) {
 }
 
 function setItems(place, items) {
-    console.log("We are now setting  the items...");
+    place.innerHTML = items.map((item, index) => {
+        return `
+            <li class="item">
+                <input type="checkbox" class="item__checkbox" data-index=${index} id="item${index}" ${ item.done ? "checked" : ""}>
+            
+                <label for="item${index}" class="item__label">${item.name}</label>
+            </li>
+        `
+    }).join("");
 }
+
+setItems(itemsList, items)
