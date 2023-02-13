@@ -6,7 +6,7 @@ const deleteAllButton = document.getElementById("deleteAll");
 const checkAllButton = document.getElementById("checkAll");
 const uncheckAllButton = document.getElementById("uncheckAll");
 let allChecked = false;
-let removedAll = false;
+let allRemoved = false;
 
 // Respective events handling
 addButton.addEventListener("click", (e) => {
@@ -55,13 +55,13 @@ function addItem(place, items) {
     
     setItems(place, items);
 
-    removedAll = false;
+    allRemoved = false;
     
     form.reset();
 }
 
 function removeAllItems(place, items) {
-    if(!removedAll) {
+    if(!allRemoved) {
         console.log("All removed");
         items.splice(0, items.length);
         
@@ -74,7 +74,7 @@ function removeAllItems(place, items) {
         localStorage.removeItem("items");
     }
 
-    removedAll = true;
+    allRemoved = true;
 }
 
 function toggleItem(items, index) {
