@@ -1,6 +1,5 @@
 const itemsList = document.getElementById("itemsList");
-const items = JSON.parse(localStorage.getItem("items")) || 
-[/* {name: "Fish", done: false}, {name: "Bread", done: false}, {name: "Cucumber", done: false}, {name: "Cucumber", done: false} */];
+const items = JSON.parse(localStorage.getItem('items')) || [];
 const from = document.getElementById("form");
 const addButton = document.getElementById("add");
 const deleteAllButton = document.getElementById("deleteAll");
@@ -10,43 +9,59 @@ const uncheckAllButton = document.getElementById("uncheckAll");
 // Respective events handling
 addButton.addEventListener("click", (e) => {
     e.preventDefault();
+
     addItem(itemsList, items);
+
+    console.log(items);
 })
 
 deleteAllButton.addEventListener("click", (e) => {
     e.preventDefault();
+
     removeAllItems(itemsList, items);
+    
+    console.log(items);
 })
 
 checkAllButton.addEventListener("click", (e) => {
     e.preventDefault();
+
     checkAllItems(itemsList, items);
 })
 
 uncheckAllButton.addEventListener("click", (e) => {
     e.preventDefault();
+
     uncheckAllItems(itemsList, items);
 })
 
 function addItem(place, items) {
     let name = (form.querySelector("[name=inputText]")).value;
-
+    
     const item = {
         name,
         done: false
     }
     
     items.push(item);
-    
+
     localStorage.setItem("items", JSON.stringify(items));
-
+    
     setItems(place, items);
-
+    
     form.reset();
 }
 
 function removeAllItems(place, items) {
-    console.log("Removing items...")
+    items.splice(0, items.length);
+    
+    place.innerHTML = `
+        <p>
+            Waiting food...
+        </p>
+    `
+
+    localStorage.removeItem("items");
 }
 
 function checkAllItems(place, items) {
@@ -58,14 +73,23 @@ function uncheckAllItems(place, items) {
 }
 
 function setItems(place, items) {
-    place.innerHTML = items.map((item, index) => {
-        return `
-            <li class="item">
-                <input type="checkbox" class="item__checkbox" data-index=${index} id="item${index}" ${ item.done ? "checked" : ""}>
-            
-                <label for="item${index}" class="item__label">${item.name}</label>
-            </li>
+    if(items.length === 0) {
+        place.innerHTML = `
+            <p>
+                Waiting food...
+            </p>
         `
-    }).join("");
+    } else {
+        place.innerHTML = items.map((item, index) => {
+            return `
+                <li class="item">
+                    <input type="checkbox" class="item__checkbox" data-index=${index} id="item${index}" ${ item.done ? "checked" : ""}>
+                
+                    <label for="item${index}" class="item__label">${item.name}</label>
+                </li>
+            `
+        }).join("");
+    }
 }
 
+setItems(itemsList, items);
