@@ -23,6 +23,14 @@ deleteAllButton.addEventListener("click", (e) => {
     console.log(items);
 })
 
+itemsList.addEventListener("click", (e) => {
+    if(e.target.localName === "input") {
+        let index = e.target.dataset.index;
+    
+        toggleItem(items, index)
+    }
+});
+
 checkAllButton.addEventListener("click", (e) => {
     e.preventDefault();
 
@@ -62,6 +70,12 @@ function removeAllItems(place, items) {
     `
 
     localStorage.removeItem("items");
+}
+
+function toggleItem(items, index) {
+    items[index].done = !items[index].done;
+
+    localStorage.setItem("items", JSON.stringify(items));
 }
 
 function checkAllItems(place, items) {

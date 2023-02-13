@@ -77,6 +77,10 @@ body,
     font-size: .8rem;
 }
 
+.item {
+    list-style: none;
+}
+
 .item__checkbox  + label:before {
     content: "⬜️";
     margin-right: 10px;
