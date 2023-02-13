@@ -5,22 +5,20 @@ const addButton = document.getElementById("add");
 const deleteAllButton = document.getElementById("deleteAll");
 const checkAllButton = document.getElementById("checkAll");
 const uncheckAllButton = document.getElementById("uncheckAll");
+let allChecked = false;
+let removedAll = false;
 
 // Respective events handling
 addButton.addEventListener("click", (e) => {
     e.preventDefault();
 
     addItem(itemsList, items);
-
-    console.log(items);
 })
 
 deleteAllButton.addEventListener("click", (e) => {
     e.preventDefault();
 
     removeAllItems(itemsList, items);
-    
-    console.log(items);
 })
 
 itemsList.addEventListener("click", (e) => {
@@ -56,20 +54,27 @@ function addItem(place, items) {
     localStorage.setItem("items", JSON.stringify(items));
     
     setItems(place, items);
+
+    removedAll = false;
     
     form.reset();
 }
 
 function removeAllItems(place, items) {
-    items.splice(0, items.length);
+    if(!removedAll) {
+        console.log("All removed");
+        items.splice(0, items.length);
+        
+        place.innerHTML = `
+            <p>
+                Waiting food...
+            </p>
+        `
     
-    place.innerHTML = `
-        <p>
-            Waiting food...
-        </p>
-    `
+        localStorage.removeItem("items");
+    }
 
-    localStorage.removeItem("items");
+    removedAll = true;
 }
 
 function toggleItem(items, index) {
@@ -79,11 +84,29 @@ function toggleItem(items, index) {
 }
 
 function checkAllItems(place, items) {
-    console.log("Checking all items...");
+    if(!allChecked) {
+        console.log("checking");
+        items.map((item) => {
+            item.done = true;
+        })
+    
+        setItems(place, items);
+    }
+
+    allChecked = true;
 }
 
 function uncheckAllItems(place, items) {
-    console.log("Unchecking all items...")
+    if(allChecked) {
+        console.log("Uncheking");
+        items.map((item) => {
+            item.done = false;
+        })
+    
+        setItems(place, items);
+    }
+
+    allChecked = false;
 }
 
 function setItems(place, items) {
